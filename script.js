@@ -41,14 +41,25 @@ function fact(n) {
 
 // Write a function called all which accepts an array and a callback and returns true if every value in the array returns true when passed as parameter to the callback function
 // Sample
-// var allAreLessThanSeven = all([1,2,9], function(num){
-// 	return num < 7;
-// });
-// console.log(allAreLessThanSeven); // false
 
-function all([]) {
 
+function all(arr, callb){
+	var copy = copy || arr.slice(); // shallow copies array
+
+	if(copy.length === 0) return true;
+
+	if(callb(copy[0])){
+		copy.shift(); // remove first element from array
+		return all(copy, callb);
+	} else {
+		return false;
+	}
 }
+
+var allAreLessThanSeven = all([2, 4,], function(num){
+	return num < 7;
+});
+console.log(allAreLessThanSeven);
 
 // Write a function called productOfArray which takes in an array of numbers and returns the product of them all
 // Samples
@@ -120,3 +131,7 @@ function replicate() {
 // The Fibonacci Sequence, which sums each number with the one before it, is a great example of a problem that can be solved recursively.
 // 1. Using iteration, write a function fibs which takes a number and returns an array containing that many numbers from the fibonacci sequence. Using an example input of 8, this method should return the array [0, 1, 1, 2, 3, 5, 8, 13].
 // 2 .Now write another method fibsRec which solves the same problem recursively. This can be done in just a couple of lines (or 1 if you’re crazy, but don’t consider either of these lengths a requirement… just get it done).
+
+function fibonacci() {
+}
+
